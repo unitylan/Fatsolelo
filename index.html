@@ -101,12 +101,6 @@
     </nav>
 
     <style>
-        /* Prevent horizontal overflow */
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
         .nav-link {
             transition: color 0.3s ease;
         }
@@ -309,6 +303,50 @@
         .input-error:focus {
             border-color: #ef4444 !important;
             box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
+
+        /* Custom scrollbar styles */
+        .custom-scrollbar {
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: #888 #f1f1f1; /* For Firefox */
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px; /* Increased width for better visibility */
+            height: 8px; /* For horizontal scrollbar if needed */
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+            margin: 4px 0; /* Add some margin to make it more visible */
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+            border: 2px solid #f1f1f1; /* Add border to make it more visible */
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Ensure scrollbar is visible on mobile */
+        @media (max-width: 768px) {
+            .custom-scrollbar {
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                scrollbar-width: auto; /* For Firefox */
+            }
+            
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 8px; /* Keep consistent width on mobile */
+            }
+            
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #666; /* Darker color for better visibility */
+                border: 2px solid #f1f1f1;
+            }
         }
     </style>
 
@@ -915,33 +953,6 @@
                 </div>
             </div>
         </section>
-
-        <style>
-            /* Custom scrollbar styles */
-            .custom-scrollbar::-webkit-scrollbar {
-                width: 4px;
-            }
-            
-            @media (min-width: 768px) {
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 6px;
-                }
-            }
-            
-            .custom-scrollbar::-webkit-scrollbar-track {
-                background: #f1f1f1;
-                border-radius: 10px;
-            }
-            
-            .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: #888;
-                border-radius: 10px;
-            }
-            
-            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                background: #555;
-            }
-        </style>
 
         <!-- Contact Section -->
         <section id="contact" class="py-20 bg-gray-50 relative z-10">
