@@ -919,7 +919,13 @@
         <style>
             /* Custom scrollbar styles */
             .custom-scrollbar::-webkit-scrollbar {
-                width: 6px;
+                width: 4px;
+            }
+            
+            @media (min-width: 768px) {
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
             }
             
             .custom-scrollbar::-webkit-scrollbar-track {
