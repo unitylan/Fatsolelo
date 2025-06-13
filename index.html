@@ -9,6 +9,72 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
+  <script>
+    const sheetID = '19t5vd8suMf4HD9SG2ScsaaCHcz8h9K2BDYS7XnFF5io';
+    const sheetURL = `https://opensheet.elk.sh/${sheetID}/Sheet1`;
+  
+    // Function to create a job listing card
+    function createJobCard(job) {
+      const card = document.createElement('div');
+      card.className = 'border border-gray-200 rounded-lg p-4 md:p-6 hover:shadow-md transition-shadow';
+  
+      card.innerHTML = `
+        <h4 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">${job.Title || 'Position Available'}</h4>
+        <p class="text-sm md:text-base text-gray-600 mb-3 md:mb-4">${job.Description || 'Join our team and be part of our success story.'}</p>
+        <div class="flex flex-wrap gap-2 md:gap-4">
+          ${job.Type ? `<span class="bg-gray-100 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">${job.Type}</span>` : ''}
+          ${job.Location ? `<span class="bg-gray-100 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">${job.Location}</span>` : ''}
+          ${job.Experience ? `<span class="bg-gray-100 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">${job.Experience}</span>` : ''}
+        </div>
+      `;
+      return card;
+    }
+  
+    // Function to handle errors
+    function handleError(error) {
+      console.error('Failed to fetch job listings:', error);
+      const container = document.getElementById('vacancies-list');
+      container.innerHTML = `
+        <div class="text-center text-gray-600 py-8">
+          <p class="mb-2">Unable to load job listings at this time.</p>
+          <p>Please check back later or contact us directly.</p>
+        </div>
+      `;
+    }
+  
+    // Fetch and display job listings
+    fetch(sheetURL)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then(data => {
+        const container = document.getElementById('vacancies-list');
+        
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div class="text-center text-gray-600 py-8">
+              <p>No current vacancies available.</p>
+              <p>Please check back later or contact us directly.</p>
+            </div>
+          `;
+          return;
+        }
+  
+        // Clear existing content
+        container.innerHTML = '';
+        
+        // Add each job listing
+        data.forEach(job => {
+          container.appendChild(createJobCard(job));
+        });
+      })
+      .catch(handleError);
+  </script>
+
 <body class="bg-gray-50">
     <!-- Contact Header -->
     <header class="bg-teal-950 text-white py-2">
