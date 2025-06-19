@@ -26,6 +26,7 @@
           ${job.Type ? `<span class="bg-gray-100 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">${job.Type}</span>` : ''}
           ${job.Location ? `<span class="bg-gray-100 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">${job.Location}</span>` : ''}
           ${job.Experience ? `<span class="bg-gray-100 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">${job.Experience}</span>` : ''}
+          ${job.PDF ? `<a href="${job.PDF}" target="_blank" class="text-teal-600 underline text-sm md:text-base block">Download Job Description (PDF)</a>` : ''}
         </div>
       `;
       return card;
